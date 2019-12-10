@@ -8570,11 +8570,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\CourseWorks\\LK5\\LK5\\LK5.csproj",
+      "projectUniqueName": "F:\\УЧЕБА\\3 курс\\РПБДИС\\Lab_5\\LK5\\LK5\\LK5.csproj",
       "projectName": "LK5",
-      "projectPath": "D:\\Projects\\CourseWorks\\LK5\\LK5\\LK5.csproj",
+      "projectPath": "F:\\УЧЕБА\\3 курс\\РПБДИС\\Lab_5\\LK5\\LK5\\LK5.csproj",
       "packagesPath": "C:\\Users\\kiril\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\CourseWorks\\LK5\\LK5\\obj\\",
+      "outputPath": "F:\\УЧЕБА\\3 курс\\РПБДИС\\Lab_5\\LK5\\LK5\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
