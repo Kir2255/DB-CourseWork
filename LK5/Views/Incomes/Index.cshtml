@@ -1,0 +1,89 @@
+﻿@using LK5.Models;
+@model IndexViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form method="get">
+    <div class="form-inline form-group">
+        <label class="control-label">Name:&nbsp;</label>
+        <input name="name" class="form-control" />
+
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </div>
+</form>
+
+<form method="get">
+    <div class="form-inline form-group">
+        <input name="amount" type="hidden" value="1"/>
+        <input type="submit" value="Sorting by amount" class="btn btn-primary" />
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <p>Income ID</p>
+            </th>
+            <th>
+                <p>Income Source</p>
+            </th>
+            <th>
+                <p>Amount</p>
+            </th>
+            <th>
+                <p>Date</p>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Incomes)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IncomeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IncomeSource.IncomeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IncomeDate)
+                </td>
+                <td>
+                    <a class="btn btn-primary" role="button" asp-action="Edit" asp-route-id="@item.IncomeId">Edit</a> |
+                    <a class="btn btn-primary" role="button" asp-action="Details" asp-route-id="@item.IncomeId">Details</a> |
+                    <a class="btn btn-primary" role="button" asp-action="Delete" asp-route-id="@item.IncomeId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Model.PageViewModel.HasPreviousPage)
+{
+    <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+       class="btn btn-primary" role="button">
+        &lt; Previous
+    </a>
+}
+@if (Model.PageViewModel.HasNextPage)
+{
+    <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+       class="btn btn-primary" role="button">
+        Next &gt;
+    </a>
+}

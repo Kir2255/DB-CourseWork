@@ -1,0 +1,128 @@
+﻿@using LK5.Models;
+@model IndexViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form method="get">
+    <div class="form-row form-group">
+        <label class="control-label">FIO:&nbsp;</label>
+        <input name="name" class="form-control" />
+
+        <label class="control-label">&nbsp;Sex:&nbsp;</label>
+        <input name="sex" class="form-control" />
+
+        <label class="control-label">&nbsp;Age:&nbsp;</label>
+        <input name="age" class="form-control" />
+
+        <label class="control-label">&nbsp;Phone:&nbsp;</label>
+        <input name="phone" class="form-control" />
+
+        <label class="control-label">&nbsp;Income Source:&nbsp;</label>
+        <input name="income" class="form-control" />
+
+        <label class="control-label">&nbsp;Expense Type:&nbsp;</label>
+        <input name="expense" class="form-control" />
+
+        <input type="submit" value="Filter" class="btn btn-primary" />
+    </div>
+</form>
+
+<form method="get">
+    <div class="form-inline form-group">
+        <input name="balance" type="hidden" value="1" />
+        <input type="submit" value="Sorting by amount" class="btn btn-primary" />
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <p>Member ID</p>
+            </th>
+            <th>
+                <p>FIO</p>
+            </th>
+            <th>
+                <p>Sex</p>
+            </th>
+            <th>
+                <p>Age</p>
+            </th>
+            <th>
+                <p>Phone</p>
+            </th>
+            <th>
+                <p>Income</p>
+            </th>
+            <th>
+                <p>Expense</p>
+            </th>
+            <th>
+                <p>Balance</p>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.FamilyMembers)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemberId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Income.IncomeSource.IncomeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Expense.ExpenseType.ExpenseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Balance)
+            </td>
+            <td>
+                <a class="btn btn-primary" role="button" asp-action="Edit" asp-route-id="@item.MemberId">Edit</a> |
+                <a class="btn btn-primary" role="button" asp-action="Details" asp-route-id="@item.MemberId">Details</a> |
+                <a class="btn btn-primary" role="button" asp-action="Delete" asp-route-id="@item.MemberId">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+@if (Model.PageViewModel.HasPreviousPage)
+{
+    <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+       class="btn btn-primary" role="button">
+        &lt; Previous
+    </a>
+}
+@if (Model.PageViewModel.HasNextPage)
+{
+<a asp-action="Index"
+   asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+   class="btn btn-primary" role="button">
+    Next &gt;
+</a>
+}
